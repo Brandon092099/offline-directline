@@ -272,7 +272,7 @@ const deleteStateForUser = (req: express.Request, res: express.Response) => {
 
 // CLIENT ENDPOINT HELPERS
 const createMessageActivity = (incomingActivity: IMessageActivity, serviceUrl: string, conversationId: string): IMessageActivity => {
-    return { ...incomingActivity, channelId: 'emulator', serviceUrl, conversation: { id: conversationId }, id: uuidv4() };
+    return { ...incomingActivity, from: { id: 'offline-directline', name: 'Offline Directline Server' }, recipient: { id: 'bot1', name: 'bot' }, channelId: 'emulator', serviceUrl, conversation: { id: conversationId }, id: uuidv4() };
 };
 
 const createConversationUpdateActivity = (serviceUrl: string, conversationId: string): IConversationUpdateActivity => {
@@ -285,6 +285,7 @@ const createConversationUpdateActivity = (serviceUrl: string, conversationId: st
         membersAdded: [],
         membersRemoved: [],
         from: { id: 'offline-directline', name: 'Offline Directline Server' },
+        recipient: { id: 'bot1', name: 'bot' },
     };
     return activity;
 };
